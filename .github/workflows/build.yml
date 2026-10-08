@@ -1,0 +1,83 @@
+name: Build
+
+on:
+  schedule:
+    - cron: '17 */6 * * *'
+  workflow_dispatch:
+  push:
+    paths:
+      - 'build_slim.py'
+      - '.github/workflows/build.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download sources
+        run: |
+          mkdir -p src
+          curl -fsSL --retry 3 -o src/geoip.dat   https://github.com/runetfreedom/russia-blocked-geoip/releases/latest/download/geoip.dat
+          curl -fsSL --retry 3 -o src/geosite.dat https://github.com/runetfreedom/russia-blocked-geosite/releases/latest/download/geosite.dat
+          ls -la src/
+
+      - name: Build
+        run: python3 build_slim.py | tee build_report.txt
+
+      - name: Checksums
+        run: |
+          cd out
+          sha256sum geoip.dat > geoip.dat.sha256
+          sha256sum geosite.dat > geosite.dat.sha256
+          cat geoip.dat.sha256 geosite.dat.sha256 > sha256sums.txt
+          cat sha256sums.txt
+
+      - name: Skip if unchanged
+        id: diff
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          prev=$(gh release download --pattern sha256sums.txt --output - 2>/dev/null || true)
+          if [ "$prev" = "$(cat out/sha256sums.txt)" ]; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "Same files as the latest release, nothing to publish."
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Release
+        if: steps.diff.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          tag=$(date -u +%Y%m%d-%H%M)
+          gh release create "$tag" \
+            out/geoip.dat out/geosite.dat \
+            out/geoip.dat.sha256 out/geosite.dat.sha256 out/sha256sums.txt \
+            --title "$tag" --notes-file build_report.txt --latest
+
+      # GitHub disables scheduled workflows in public repos after 60 days without commits.
+      - name: Keep schedule alive
+        run: |
+          last=$(git log -1 --format=%ct)
+          if [ $(( $(date +%s) - last )) -gt 2592000 ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit --allow-empty -m "keepalive"
+            git push
+          fi
+
+      - name: Prune old releases (keep last 14)
+        if: steps.diff.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release list --limit 100 --json tagName --jq '.[].tagName' \
+            | tail -n +15 \
+            | while read -r tag; do
+                gh release delete "$tag" -y --cleanup-tag || true
+              done
