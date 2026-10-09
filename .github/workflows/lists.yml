@@ -1,0 +1,40 @@
+name: Lists
+
+on:
+  schedule:
+    - cron: '37 5 * * *'
+  workflow_dispatch:
+  push:
+    paths:
+      - 'lists/manual.txt'
+      - 'tools/merge_lists.py'
+      - '.github/workflows/lists.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: lists
+  cancel-in-progress: false
+
+jobs:
+  merge:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Merge manual + community lists
+        run: python3 tools/merge_lists.py lists/manual.txt lists/vpn-extra.txt
+
+      - name: Commit if changed
+        run: |
+          if git diff --quiet -- lists/vpn-extra.txt && git ls-files --error-unmatch lists/vpn-extra.txt >/dev/null 2>&1; then
+            echo "vpn-extra.txt unchanged"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add lists/vpn-extra.txt
+          git commit -m "Update vpn-extra.txt"
+          git pull --rebase
+          git push
