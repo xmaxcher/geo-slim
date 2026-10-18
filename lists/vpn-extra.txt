@@ -779,7 +779,7 @@ ytimg.com
 ytimg.l.google.com
 yting.com
 
-# === v2fly: нейросети вне Китая (category-ai-!cn) — 100 доменов (собрано автоматически) ===
+# === v2fly: нейросети вне Китая (category-ai-!cn) — 103 доменов (собрано автоматически) ===
 agentclientprotocol.com
 ai.studio
 anythingllm.com
@@ -812,6 +812,7 @@ copilot.com
 coze.com
 crewai.com
 crixet.com
+cursorvm.com
 deepwiki.com
 deepwiki.org
 devin.ai
@@ -859,6 +860,7 @@ oaistatsig.com
 ollama.com
 opal.google
 opal.google.com
+openai.org
 openai.qualtrics.com
 openart.ai
 openclaw.ai
@@ -876,6 +878,7 @@ tapnow.ai
 themeforest.net
 tripo3d.ai
 turn.livekit.cloud
+typesafe.ai
 windsurf.build
 youmind.ai
 youmind.com
