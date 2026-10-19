@@ -779,7 +779,7 @@ ytimg.com
 ytimg.l.google.com
 yting.com
 
-# === v2fly: нейросети вне Китая (category-ai-!cn) — 103 доменов (собрано автоматически) ===
+# === v2fly: нейросети вне Китая (category-ai-!cn) — 104 доменов (собрано автоматически) ===
 agentclientprotocol.com
 ai.studio
 anythingllm.com
@@ -844,6 +844,7 @@ liveperson.net
 lmstudio.ai
 lovart.ai
 lpsnmedia.net
+magnific.com
 manuscdn.com
 marscode.com
 meta.ai
