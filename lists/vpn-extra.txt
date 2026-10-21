@@ -779,12 +779,16 @@ ytimg.com
 ytimg.l.google.com
 yting.com
 
-# === v2fly: нейросети вне Китая (category-ai-!cn) — 104 доменов (собрано автоматически) ===
+# === v2fly: нейросети вне Китая (category-ai-!cn) — 114 доменов (собрано автоматически) ===
 agentclientprotocol.com
 ai.studio
+ant.dev
+anthropic.team
+antspace.dev
 anythingllm.com
 arena.ai
 cerebras.ai
+chatbotclaude.com
 chatgpt.livekit.cloud
 chatgpt.site
 chutes.ai
@@ -792,9 +796,15 @@ cici.com
 ciciai.com
 ciciaicdn.com
 clau.de
+claude.app
 claude.dev
+claude.new
+claude.site
+claudeacademy.com
 claudemcpclient.com
 claudemcpcontent.com
+claudepages.dev
+claudestudio.com
 clawhub.ai
 clipdrop.co
 codeiumdata.com
