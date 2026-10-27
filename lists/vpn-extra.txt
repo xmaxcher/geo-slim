@@ -217,7 +217,7 @@ patreon.com
 vimeo.com
 vimeocdn.com
 
-# === itdog: geoblock (сервисы, закрывшие доступ из РФ) — 416 доменов (собрано автоматически) ===
+# === itdog: geoblock (сервисы, закрывшие доступ из РФ) — 415 доменов (собрано автоматически) ===
 4pda.to
 4pda.ws
 abercrombie.com
@@ -296,7 +296,6 @@ daemon-tools.cc
 dashboard.algolia.com
 dashboard.gitguardian.com
 data-cdn.mbamupdates.com
-data.cline.bot
 deepl.com
 deezer.com
 dell.com
@@ -779,7 +778,7 @@ ytimg.com
 ytimg.l.google.com
 yting.com
 
-# === v2fly: нейросети вне Китая (category-ai-!cn) — 115 доменов (собрано автоматически) ===
+# === v2fly: нейросети вне Китая (category-ai-!cn) — 121 доменов (собрано автоматически) ===
 agentclientprotocol.com
 ai.studio
 ant.dev
@@ -788,6 +787,7 @@ antspace.dev
 anythingllm.com
 appsgenaiserver-pa.clients.google.com
 arena.ai
+artificialanalysis.ai
 cerebras.ai
 chatbotclaude.com
 chatgpt.livekit.cloud
@@ -807,6 +807,7 @@ claudemcpcontent.com
 claudepages.dev
 claudestudio.com
 clawhub.ai
+cline.bot
 clipdrop.co
 codeiumdata.com
 coderabbit.ai
@@ -816,6 +817,8 @@ cohere.com
 comfy.org
 comfyci.org
 comfyregistry.org
+commandcode.ai
+context7.com
 copilot-stg.com
 copilot-workspace.githubnext.com
 copilot.cloud.microsoft
@@ -859,6 +862,7 @@ magnific.com
 manuscdn.com
 marscode.com
 meta.ai
+metaaiusercontent.com
 metaaivm.com
 minimax.io
 moonshot.ai
@@ -867,6 +871,7 @@ muse.ai
 notebook.google
 notebook.google.com
 notegpt.io
+nousresearch.com
 novelai.net
 oaistatsig.com
 ollama.com
